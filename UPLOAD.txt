@@ -1,0 +1,7 @@
+MY SITES
+
+Unzip this download. Upload index.html and the entire previews and media folders into the top level of your gallery repository, keeping folder names intact. Do not upload the ZIP itself.
+
+The videos are included: GitHub Pages will host them alongside this page after you upload the media folder. Tap Play for video and sound; only one video plays at a time.
+
+This gallery links to your existing sites; it does not replace those sites. Temecula retains its existing access settings.
