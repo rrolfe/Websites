@@ -15,6 +15,7 @@
     section{min-width:0;margin-bottom:38px}
     .top-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
     .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+    .final-videos{grid-template-columns:repeat(2,minmax(0,1fr))}
     .card{display:block;min-width:0;border:1px solid #e0e4e9;border-radius:9px;overflow:hidden;background:#fff;color:inherit;text-decoration:none}
     a.card:hover{border-color:#7a8999;box-shadow:0 3px 12px #17202b0c}
     a:focus-visible,summary:focus-visible,video:focus-visible{outline:3px solid #285ed9;outline-offset:4px}
@@ -74,6 +75,18 @@
       <div class="grid"><a class="card" href="https://rrolfe.github.io/big-boo-space-console/"><img loading="lazy" src="previews/big-boo-space-console.png" alt="Original Big Boo Space Console homepage"><div class="caption"><span class="name">Original Space Console</span></div></a></div>
     </details>
     <h3>Videos &amp; screens</h3>
+    <div class="grid final-videos">
+      <article class="card video-card">
+        <video controls playsinline loop preload="none" poster="previews/mv51-portal-systems.jpg" aria-label="MV51 portal systems monitor"><source src="media/MV51_Portal_Systems_30s_Loop.mp4" type="video/mp4">Your browser cannot play this video. <a href="media/MV51_Portal_Systems_30s_Loop.mp4">Open the video</a>.</video>
+        <div class="caption"><span class="name">MV51 — Portal Systems Monitor</span><span class="note">30-sec loop · Silent · Portal scan &amp; measurements</span></div>
+      </article>
+      <article class="card video-card">
+        <video controls playsinline loop preload="none" poster="previews/mv51-final-countdown.jpg" aria-label="Final MV51 countdown with sound"><source src="media/MV51_Portal_Countdown_30s_Loop.mp4" type="video/mp4">Your browser cannot play this video. <a href="media/MV51_Portal_Countdown_30s_Loop.mp4">Open the video</a>.</video>
+        <div class="caption"><span class="name">MV51 — Final Countdown</span><span class="note">30-sec loop · Sound · Countdown &amp; ENTER NOW</span></div>
+      </article>
+    </div>
+    <details>
+      <summary>Earlier videos &amp; screens</summary>
     <div class="grid">
       <article class="card video-card">
         <video controls playsinline preload="none" poster="previews/alien-jump-scare-real-roar.jpg" aria-label="Alien scare countdown, with sound and a jump scare"><source src="media/alien-jump-scare-real-roar.mp4" type="video/mp4">Your browser cannot play this video. <a href="media/alien-jump-scare-real-roar.mp4">Open the video</a>.</video>
@@ -81,13 +94,14 @@
       </article>
       <article class="card video-card">
         <video controls playsinline preload="none" poster="previews/launch-sequence-loop-reset.jpg" aria-label="Launch countdown with sound and a reset"><source src="media/launch-sequence-loop-reset.mp4" type="video/mp4">Your browser cannot play this video. <a href="media/launch-sequence-loop-reset.mp4">Open the video</a>.</video>
-        <div class="caption"><span class="name">Launch countdown</span><span class="note">25 sec · Sound · Flash &amp; black-screen reset</span></div>
+        <div class="caption"><span class="name">Earlier launch countdown</span><span class="note">25 sec · Sound · Flash &amp; black-screen reset</span></div>
       </article>
       <article class="card video-card">
         <video controls playsinline preload="none" poster="previews/ready-loop-with-sound.jpg" aria-label="Ready screen with sound"><source src="media/ready-loop-with-sound.mp4" type="video/mp4">Your browser cannot play this video. <a href="media/ready-loop-with-sound.mp4">Open the video</a>.</video>
         <div class="caption"><span class="name">Ready screen</span><span class="note">12 sec · Sound</span></div>
       </article>
     </div>
+    </details>
   </section>
   <section aria-labelledby="temecula-heading">
     <h2 id="temecula-heading">Temecula</h2>
@@ -101,6 +115,12 @@
       document.querySelectorAll('video').forEach(function(other) {
         if (other !== video) other.pause();
       });
+    });
+  });
+  // Closing a video collection also stops any video inside it.
+  document.querySelectorAll('details').forEach(function(group) {
+    group.addEventListener('toggle', function() {
+      if (!group.open) group.querySelectorAll('video').forEach(function(video) { video.pause(); });
     });
   });
 </script>

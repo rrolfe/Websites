@@ -14,19 +14,27 @@ You can upload README.txt too, or leave it on your computer.
 Upload the unzipped contents, not the ZIP itself.
 
 WHAT CHANGED
+- Added the newer MV51 Portal Systems monitor (silent, 30 seconds) and the
+  final MV51 Portal Countdown (with sound, 30 seconds). Both play inline and loop.
+  These two are shown first. The older three videos are in an expandable section.
 - Added the recovered Rob Rolfe portfolio redesign, with an actual screenshot.
   Its files are included in the portfolio folder. Clicking its card opens it
   directly inside this site after you upload the update.
 - Kept Max's latest Learning Lab prominent; earlier versions remain expandable.
 - Kept the three distinct Big Boo websites; the original planet page is expandable.
-- Reduced eleven Big Boo videos to three: the alien scare, the launch countdown
+- Preserved three earlier videos: the alien scare, the old launch countdown
   with reset, and the ready screen. Only one video can play at a time.
 - Kept Temecula and a plain white, phone-friendly layout.
 
 This package has not been published to GitHub for you. It contains the full gallery,
-all of its thumbnail images, its three selected video files, and the portfolio.
+all of its thumbnail images, its five selected video files, and the portfolio.
 The other websites remain hosted at their existing URLs. Nothing needs deleting:
 old video files can stay in your repository without appearing in this new gallery.
 
 Portfolio screenshots are snapshots, not live previews. The recovered portfolio
 uses embedded images; its external video players still require an internet connection.
+
+IF YOU ALREADY UPLOADED THE PREVIOUS UPDATE
+Replace index.html, add the two MV51 MP4 files in media, and add
+mv51-portal-systems.jpg and mv51-final-countdown.jpg in previews.
+The other files are unchanged, so you do not have to upload them again.
