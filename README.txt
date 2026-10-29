@@ -14,7 +14,7 @@ You can upload README.txt too, or leave it on your computer.
 Upload the unzipped contents, not the ZIP itself.
 
 WHAT CHANGED
-- Added the newer MV51 Portal Systems monitor (silent, 30 seconds) and the
+- Added the MV51 Alien Interference monitor (silent, 30 seconds) and the
   final MV51 Portal Countdown (with sound, 30 seconds). Both play inline and loop.
   These two are shown first. The older three videos are in an expandable section.
 - Added the recovered Rob Rolfe portfolio redesign, with an actual screenshot.
@@ -35,6 +35,11 @@ Portfolio screenshots are snapshots, not live previews. The recovered portfolio
 uses embedded images; its external video players still require an internet connection.
 
 IF YOU ALREADY UPLOADED THE PREVIOUS UPDATE
-Replace index.html, add the two MV51 MP4 files in media, and add
-mv51-portal-systems.jpg and mv51-final-countdown.jpg in previews.
-The other files are unchanged, so you do not have to upload them again.
+Replace index.html and add these two files in their matching folders:
+- media/MV51_Portal_Alien_Interference_30s_Loop.mp4
+- previews/mv51-alien-interference.jpg
+
+This replaces the Portal Systems video card with the version that visibly
+keeps ALIEN INTERFERENCE. The final countdown and other page content are unchanged.
+The old MV51_Portal_Systems_30s_Loop.mp4 may stay in your GitHub repository;
+the updated page no longer links to it. No deletion is needed.
