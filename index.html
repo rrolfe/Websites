@@ -32,8 +32,9 @@
     .top-grid details .name{font-size:14px}
     .video-card video{display:block;width:100%;aspect-ratio:16/9;background:#080b12}
     .single{max-width:calc((100% - 44px)/3)}
+    .top-grid .pair{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
     @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.single{max-width:calc((100% - 22px)/2)}}
-    @media(max-width:600px){main{padding:23px 18px}h1{font-size:28px;margin-bottom:25px}.top-grid,.grid,.top-grid details .grid{grid-template-columns:1fr;gap:18px}.top-grid{gap:0}.single{max-width:none}section{margin-bottom:32px}.card img{aspect-ratio:16/10}.caption{padding:12px 14px 14px}}
+    @media(max-width:600px){main{padding:23px 18px}h1{font-size:28px;margin-bottom:25px}.top-grid,.grid,.top-grid details .grid,.top-grid .pair{grid-template-columns:1fr;gap:18px}.top-grid{gap:0}.single{max-width:none}section{margin-bottom:32px}.card img{aspect-ratio:16/10}.caption{padding:12px 14px 14px}}
   </style>
 </head>
 <body>
@@ -49,10 +50,16 @@
     </section>
     <section class="collection" aria-labelledby="max-heading">
       <h2 id="max-heading">Max’s Learning Lab</h2>
-      <a class="card" href="https://rrolfe.github.io/Max-s-Fun-Learning-Lab/">
-        <img src="previews/Max-s-Fun-Learning-Lab.png" alt="Max’s Fun Learning Lab homepage" width="1600" height="1000">
-        <div class="caption"><span class="name">Max’s Fun Learning Lab</span><span class="note">Current version</span></div>
-      </a>
+      <div class="grid pair">
+        <a class="card" href="https://rrolfe.github.io/Max-s-Fun-Learning-Lab/">
+          <img src="previews/Max-s-Fun-Learning-Lab.png" alt="Max’s Fun Learning Lab homepage" width="1600" height="1000">
+          <div class="caption"><span class="name">Max’s Fun Learning Lab</span><span class="note">Current version</span></div>
+        </a>
+        <a class="card" href="https://rrolfe.github.io/mass-lab/">
+          <img src="previews/maxs-lab-v2.png" alt="Max’s Lab, the new build, home screen with word search, hangman, quiz missions, stands, world map and passport" width="1280" height="800">
+          <div class="caption"><span class="name">Max’s Lab</span><span class="note">New build to compare</span></div>
+        </a>
+      </div>
       <details>
         <summary>Earlier versions of Max’s Learning Lab</summary>
         <div class="grid">
