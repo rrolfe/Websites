@@ -1,0 +1,50 @@
+/* Phone layout (the lab was built for an iPad, so everything below only applies on screens narrower than 640px) */
+.hudbreak { display: none; }
+@media (max-width: 640px) {
+  :root { --tap: 44px; }
+  /* Top bar: two compact rows (home, logo, pearls, partner logo / voice, sound, theme, language) */
+  .hud { flex-wrap: wrap; gap: 6px 8px; padding: calc(var(--sat) + 8px) calc(var(--sar) + 12px) 8px calc(var(--sal) + 12px); }
+  .hud .btn-home, .hud .hud-btn { min-width: 42px; height: 42px; border-radius: 11px; border-width: 2.5px; }
+  .hud .btn-home .ico { width: 28px; height: 28px; } .hud .hud-btn .ico { width: 24px; height: 24px; }
+  .hud .brand .logo { width: 42px; height: 42px; border-radius: 10px; }
+  .hud .partner { order: 1; height: 38px; max-width: 120px; margin-left: 0; }
+  .hud .pill { order: 0; min-height: 42px; padding: 0 12px 0 8px; font-size: 18px; border-width: 2.5px; } .hud .pill .ico { width: 24px; height: 24px; }
+  .hud .hudbreak { display: block; order: 2; flex: 0 0 100%; height: 0; }
+  .hud .hud-btn, .hud .seg { order: 3; }
+  .hud .seg { margin-left: auto; border-width: 2.5px; } .seg button { min-width: 42px; height: 36px; font-size: 15px; }
+
+  #screen { padding: 14px calc(var(--sar) + 14px) calc(var(--sab) + 40px) calc(var(--sal) + 14px); }
+  h1, .screen-head h1 { font-size: 28px; }
+  .greet { gap: 8px; }
+
+  /* Home: the continue card and the challenge cards stack (picture and words, then a full-width button) */
+  .continue { flex-wrap: wrap; gap: 10px 14px; padding: 14px; margin-bottom: 16px; }
+  .continue .ci { width: 60px; height: 60px; } .continue .ci .ico { width: 44px; height: 44px; }
+  .continue .ct { flex: 1 1 140px; } .continue .ct small { font-size: 16px; } .continue .ct strong { font-size: 24px; }
+  .continue .btn { flex: 1 1 100%; text-align: center; }
+  .cboard { gap: 12px; margin-bottom: 16px; }
+  .ccard { flex-wrap: wrap; min-height: 0; gap: 10px 14px; padding: 12px 14px; }
+  .ccard .ci .ico { width: 44px; height: 44px; }
+  .ccard .cc { flex: 1 1 150px; } .ccard .cc small { font-size: 16px; } .ccard .cc strong { font-size: 22px; } .ccard .cc span { font-size: 17px; }
+  .ccard .btn { flex: 1 1 100%; text-align: center; }
+  .hub { gap: 12px; }
+  .tile { min-height: 150px; padding: 84px 12px 14px; } .tile::before { height: 70px; } .tile strong { font-size: 22px; }
+
+  /* Questions: title, clock and pearls on the first row, progress dots on their own row */
+  .qhead { flex-wrap: wrap; gap: 8px 10px; margin-bottom: 12px; }
+  .qtitle { flex: 1 1 0; font-size: 20px; gap: 8px; } .qtitle .ico { width: 30px; height: 30px; }
+  .dots { order: 5; flex: 1 1 100%; gap: 8px; } .dots i { width: 20px; height: 20px; }
+  .qhead .chip, .qhead .pill { min-height: 40px; padding: 0 12px 0 8px; font-size: 18px; }
+  .qlayout { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .qcard { padding: 14px 16px 10px; } .qtext { font-size: 24px; line-height: 1.35; margin: 10px 0 6px; }
+  .answers, .answers.two, .answers.long { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .ans { min-height: 68px; padding: 8px 14px; gap: 12px; } .ans .mark { width: 38px; height: 38px; font-size: 20px; }
+  .keypad { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .topics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .topic { padding: 12px 12px 12px 10px; border-left-width: 10px; } .topic strong { font-size: 20px; } .topic small { font-size: 15px; }
+  .pips { gap: 4px; } .pips i { width: 14px; height: 14px; }
+  .mission { padding: 12px; gap: 10px 12px; } .mission .mt strong { font-size: 22px; } .mission .mt small { font-size: 16px; }
+  .screen-head { flex-wrap: wrap; gap: 8px 10px; }
+  .screen-head h1 { flex: 1 1 0; min-width: 0; }
+  .screen-head .chip, .screen-head .pill { min-height: 38px; padding: 0 12px; font-size: 16px; flex: none; }
+}

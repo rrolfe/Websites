@@ -13,6 +13,8 @@ A separate copy of Max's Lab, made to test whether a "challenge show" feel makes
 - *Weekly Prize Pot*: pearls earned Monday to Sunday fill a pot. A grown-up sets the prize (for example "Pizza night") and the goal (150 to 900 pearls) in the Grown-up corner, under *Weekly prize*. When the pot is full, a Claim button appears; the real prize is given by the grown-up. One claim per week; a badge for the first.
 - Everything else (quiz missions, word search, hangman, the four stands, arcade baseball, world map, passport, chores, check-in) is the same as Max's Lab, with the family places turned into ordinary world places.
 
+**Phones:** `css/phone.css` adds a phone layout for screens under 640px wide (two-row top bar, stacked cards, one-column answers). Nothing changes on iPad.
+
 Tests: `node tools/tests/challenge.mjs [en|es] [ipad-land|ipad-port]` (needs `python3 -m http.server 8767` in this folder). The rest of this file describes the shared lab.
 
 # the player’s Lab

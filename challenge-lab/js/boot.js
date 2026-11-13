@@ -41,7 +41,8 @@ function buildHud() {
     h('button', { 'data-l': 'es', onclick: () => switchLang('es') }, 'ES'));
   const partner = h('img', { class: 'partner', src: BRAND.partner.src, alt: '', width: 160, height: 48 });
   partner.addEventListener('error', () => { partner.hidden = true; });   // no logo file yet: show nothing
-  hud.append(homeBtn, brand, h('div', { class: 'spacer' }), week, pearl, speak, snd, theme, lang, partner);
+  const hudBreak = h('span', { class: 'hudbreak' });   // only used on phones, to start a second row
+  hud.append(homeBtn, brand, h('div', { class: 'spacer' }), week, pearl, hudBreak, speak, snd, theme, lang, partner);
   hudEls = { homeBtn, brand, week, pearl, speak, snd, theme, lang, partner };
   return hud;
 }
