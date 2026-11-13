@@ -1,0 +1,32 @@
+/* Challenge board on the Home screen, plus the Beat the Clock chip in missions */
+.cboard { display: grid; grid-template-columns: 1.35fr 1fr 1.3fr; gap: 16px; margin: 0 0 20px; }
+@media (max-width: 900px) { .cboard { grid-template-columns: 1fr; } }
+.ccard {
+  all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 14px; min-height: 96px; padding: 14px 18px; cursor: default;
+  background: var(--surface); color: var(--ink); border: 3px solid var(--ink); border-radius: 14px; box-shadow: 0 4px 0 var(--ink);
+}
+a.ccard { cursor: pointer; transition: transform 80ms ease-out, box-shadow 80ms ease-out; }
+a.ccard:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
+.ccard .ci { flex: none; } .ccard .ci .ico { width: 56px; height: 56px; }
+.ccard .cc { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.ccard .cc small { font-size: 17px; opacity: .85; line-height: 1.25; }
+.ccard .cc strong { font: 900 26px/1.15 var(--font-display); }
+.ccard .cc span { font-size: 19px; line-height: 1.25; }
+.ccard.clock { background: var(--brand-blue); }
+.ccard.clock.done { background: var(--surface); }
+.ccard.streak.lit { background: color-mix(in srgb, var(--brand-pink) 22%, var(--surface)); }
+.ccard.pot { background: color-mix(in srgb, var(--brand-blue) 22%, var(--surface)); }
+.ccard.pot.full { background: color-mix(in srgb, var(--brand-pink) 30%, var(--surface)); animation: pop 600ms ease-out 1; }
+.potbar { height: 22px; margin: 4px 0; border: 3px solid var(--ink); border-radius: 99px; background: var(--surface); overflow: hidden; }
+.potbar i { display: block; height: 100%; background: repeating-linear-gradient(45deg, var(--brand-pink) 0 12px, color-mix(in srgb, var(--brand-pink) 70%, #fff) 12px 24px); transition: width 400ms ease-out; }
+.ccard .prize { font-weight: 700; }
+.ccard .btn { flex: none; }
+:root[data-theme="night"] .ccard.clock { background: color-mix(in srgb, var(--brand-blue) 45%, var(--surface)); color: var(--ink); }
+.clockchip b { font-variant-numeric: tabular-nums; font-weight: 900; min-width: 3.2ch; text-align: center; }
+.clockchip { background: var(--brand-blue); color: var(--brand-black); }
+.clockchip.low { background: var(--brand-pink); animation: pop 700ms ease-in-out infinite; }
+.clockchip.late { background: var(--ink); color: var(--surface); animation: none; }
+@media (prefers-reduced-motion: reduce) { .clockchip.low, .ccard.pot.full { animation: none; } }
+
+.ccard .claim, .ccard .claimed { justify-self: start; margin-top: 6px; }
+.ccard.pot .cc { min-width: 0; }

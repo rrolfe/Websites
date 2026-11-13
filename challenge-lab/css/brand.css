@@ -1,0 +1,36 @@
+/* Brand colors: blue, pink-purple, black and white. Change the five values in the first block and the whole lab follows.
+   (Text on the blue and the pink is always near-black, which passes contrast; blue text on white uses the darker --blue-ink.) */
+:root {
+  --brand-blue: #4FADD1; --brand-pink: #D3517C; --brand-black: #0B0B12; --brand-white: #FFFFFF; --blue-ink: #1F6F90;
+  --bg: #F3FAFD; --surface: var(--brand-white); --ink: var(--brand-black); --muted: #4B5663; --line: rgba(11,11,18,.2);
+  --coral: var(--brand-pink); --teal: var(--brand-blue); --gold: var(--brand-blue); --success: #0F7B5F; --try: var(--brand-pink);
+  --on-coral: var(--brand-black); --on-teal: var(--brand-black); --panel: #DCEFF7; --deep: var(--brand-black); --on-deep: var(--brand-white);
+  --c-math: #1F6F90; --c-logic: #1F6F90;
+}
+:root[data-theme="night"] {
+  --bg: #0B0B12; --surface: #181822; --ink: #F5F8FB; --muted: #B7C0CB; --line: rgba(245,248,251,.25);
+  --coral: #E2698F; --teal: #6EC3E3; --gold: #6EC3E3; --try: #E2698F;
+  --on-coral: #0B0B12; --on-teal: #0B0B12; --panel: #1F1F2B; --deep: #000000; --on-deep: #F5F8FB;
+  --c-math: #6EC3E3; --c-logic: #6EC3E3;
+}
+a { color: var(--blue-ink); }
+:root[data-theme="night"] a { color: var(--brand-blue); }
+.overlay { background: rgba(11,11,18,.68); }
+.btn.gold, .chip.on, .seg button[aria-pressed="true"], .tab[aria-selected="true"], .oppcard.on, .chpts, .wcell.sel { color: var(--brand-black); }
+.tile[data-k="words"] { --tc: #CDE8F4; } .tile[data-k="hangman"] { --tc: #F5D4E1; } .tile[data-k="quiz"] { --tc: #4FADD1; }
+.tile[data-k="stands"] { --tc: #F5D4E1; } .tile[data-k="ball"] { --tc: #CDE8F4; } .tile[data-k="chores"] { --tc: #F5D4E1; }
+.tile[data-k="world"] { --tc: #CDE8F4; } .tile[data-k="passport"] { --tc: #E6E8EE; }
+
+/* Bold headings */
+h1, h2 { font-weight: 900; letter-spacing: -.01em; }
+.tile strong, .continue .ct strong { font-weight: 900; }
+.btn { text-transform: none; }
+
+/* Max's logo on the black bar: a white ring keeps its dark corner visible */
+.hud .brand .logo { box-shadow: 0 0 0 3px var(--brand-white); }
+
+/* Upper-right logo slot: drop a file at img/brand/logo.png */
+.hud .partner { height: 48px; width: auto; max-width: 160px; object-fit: contain; flex: none; margin-left: 6px; }
+@media (max-width: 1000px) { .hud .partner { height: 40px; max-width: 112px; } }
+@media (max-width: 1300px) { .hud .week { display: none; } }   /* the streak card on Home covers the week dots */
+.hud .seg { flex: none; }
