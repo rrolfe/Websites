@@ -6,6 +6,8 @@ A separate copy of Max's Lab, made to test whether a "challenge show" feel makes
 - `js/core/brand.js`: the child's name (`player`), the title, and the logo path. Change `player` and every greeting, title, game name and grown-up note follows (`{player}` in the strings). `index.html` and `manifest.webmanifest` repeat the title because they are static.
 - `css/brand.css`: the palette. The first block holds the blue (#4FADD1), pink (#D3517C), black and white; everything else derives from them. Text on blue and pink is near-black for contrast.
 - `img/brand/logo.png`: the upper-right logo. Replace the file (a transparent PNG about 400x150 is ideal); if the file is missing, nothing shows. It is shown at most 48px tall.
+- `img/brand/mark.png`: the upper-left logo (beside the title, also on the sunset message and the Home Screen card). It is optional: with no file there, Max's Fathom drawing (`logo()` in `js/core/icons.js`) shows. Add a file and it replaces the drawing everywhere. Square works best; a wide one is allowed (up to 3x as wide as tall, 2x on phones). The top bar is black, so use a logo with a transparent background that reads on black, or one that brings its own light background.
+- `icons/` (`fathom.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`): the browser-tab icon and the Home Screen / install icons. Replace the files, keeping the same names.
 
 **What the challenge edition adds** (`js/challenge/challenge.js`, `css/challenge.css`)
 - *Beat the Clock*: the first mission of the day can be played against a countdown (40 seconds per question, shown as 5:20 for 8 questions). Finishing in time with at least 2 stars pays +10 pearls, once a day. Running out of time costs nothing: it only loses the bonus.

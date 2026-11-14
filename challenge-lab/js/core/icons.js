@@ -1,4 +1,5 @@
 // Flat vector icons on a 48px grid: ink outlines, one coral accent. Always paired with a text label in the UI.
+import { BRAND } from './brand.js';
 const I = 'stroke:var(--ink);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round';
 const wrap = (body, size = 48, cls = '') => `<svg class="ico ${cls}" viewBox="0 0 48 48" width="${size}" height="${size}" fill="none" aria-hidden="true" focusable="false">${body}</svg>`;
 const f = (c) => `fill:var(--${c})`;
@@ -47,13 +48,18 @@ export const icons = {
 };
 
 /** The "Fathom" fin-M logo (also exported as icons/fathom.svg). */
+// The lab's own mark (upper left, the sunset dialog, the Home Screen card). If you drop a picture at img/brand/mark.png it replaces this drawing;
+// with no file there, Max's Fathom drawing shows. The drawing is only hidden once the file has actually loaded, so there is never an empty gap.
 export function logo(size = 56) {
-  return `<svg class="logo" viewBox="0 0 96 96" width="${size}" height="${size}" role="img" aria-label="Max’s Learning Lab">
+  return `<span class="logomark" style="--lm:${size}px" role="img" aria-label="Max’s Learning Lab">
+  <svg class="logo" viewBox="0 0 96 96" width="${size}" height="${size}" aria-hidden="true">
   <rect width="96" height="96" rx="22" fill="#10303B"/>
   <path d="M12 70C16 46 26 30 40 20c0 16 4 36 8 50z" fill="#EAF5F3"/>
   <path d="M44 70c4-24 14-40 28-50 0 16 4 36 8 50z" fill="#EAF5F3"/>
   <path d="M12 79q9-9 18 0t18 0 18 0 18 0" fill="none" stroke="#FF8A5B" stroke-width="5.5" stroke-linecap="round"/>
   <circle cx="22" cy="24" r="7" fill="#FFD166"/><circle cx="25.5" cy="21.5" r="6" fill="#10303B"/>
-</svg>`;
+  </svg>
+  <img class="markfile" src="${BRAND.mark.src}" alt="" onload="this.parentNode.classList.add('has-file')" onerror="this.remove()">
+</span>`;
 }
 export const ico = (name, size) => (icons[name] ? icons[name](size) : '');

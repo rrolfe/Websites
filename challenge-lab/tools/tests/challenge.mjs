@@ -1,5 +1,11 @@
 // Challenge pieces (Nov 13 2026): home board, streak, Weekly Prize Pot (claim once), Beat the Clock (a real timed round, bonus once a day), the name token, and the logo slot.
 import { open, shot, pearls } from './lib.mjs';
+import { deflateSync } from 'zlib';
+// a plain 200x75 grey PNG, generated here so the test depends on no picture in the repo
+const crcT = Array.from({ length: 256 }, (_, n) => { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; return c >>> 0; });
+const crc = (b) => { let c = 0xFFFFFFFF; for (const x of b) c = crcT[(c ^ x) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+const chunk = (t, d) => { const b = Buffer.concat([Buffer.from(t), d]); const o = Buffer.alloc(4); o.writeUInt32BE(d.length); const c = Buffer.alloc(4); c.writeUInt32BE(crc(b)); return Buffer.concat([o, b, c]); };
+const plainPng = (w, h) => { const ih = Buffer.alloc(13); ih.writeUInt32BE(w, 0); ih.writeUInt32BE(h, 4); ih[8] = 8; ih[9] = 2; const row = Buffer.concat([Buffer.from([0]), Buffer.alloc(w * 3, 200)]); return Buffer.concat([Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), chunk('IHDR', ih), chunk('IDAT', deflateSync(Buffer.concat(Array(h).fill(row)))), chunk('IEND', Buffer.alloc(0))]); };
 const lang = process.argv[2] || 'en', device = process.argv[3] || 'ipad-land';
 let fails = 0; const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) fails++; };
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -88,6 +94,15 @@ const bank = await pearls(page);
 await playRound();
 sum = await page.locator('.summary').innerText();
 ok(!/Beat the Clock \+10|Gana al reloj \+10/.test(sum) && /again|otra vez/.test(sum), 'a second run the same day pays no second bonus');
+// 7. the upper-left mark slot: Max's drawing shows with no file; a file at img/brand/mark.png replaces it
+await goto('#/home');
+ok(await page.evaluate(() => { const m = document.querySelector('.hud .logomark'); return !!m && !m.classList.contains('has-file') && getComputedStyle(m.querySelector('svg.logo')).display !== 'none'; }), 'with no mark.png, Max’s drawing shows in the upper left');
+await page.route('**/img/brand/mark.png', (r) => r.fulfill({ status: 200, contentType: 'image/png', body: plainPng(200, 75) }));
+await page.reload(); await page.waitForSelector('.hud .logomark.has-file', { timeout: 5000 });
+ok(await page.evaluate(() => { const m = document.querySelector('.hud .logomark'); const i = m.querySelector('.markfile'); const h = document.querySelector('.hud');
+  return getComputedStyle(m.querySelector('svg.logo')).display === 'none' && i.naturalWidth > 0 && i.getBoundingClientRect().height <= 49 && h.scrollWidth <= h.clientWidth + 1; }), 'a mark.png replaces the drawing, fits the bar, and the bar does not overflow');
+await shot(page, `challenge-mark-${lang}-${device}`);
+
 ok(errors.length === 0, 'no page errors' + (errors.length ? ': ' + errors.join(' | ') : ''));
 await browser.close();
 process.exit(fails ? 1 : 0);

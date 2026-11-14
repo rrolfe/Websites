@@ -29,6 +29,13 @@ h1, h2 { font-weight: 900; letter-spacing: -.01em; }
 /* Max's logo on the black bar: a white ring keeps its dark corner visible */
 .hud .brand .logo { box-shadow: 0 0 0 3px var(--brand-white); }
 
+/* Upper-left mark slot: drop a file at img/brand/mark.png (square or wide, transparent PNG works best on the black bar) */
+.logomark { display: inline-flex; align-items: center; justify-content: center; height: var(--lm); vertical-align: middle; }
+.logomark .markfile { display: none; height: 100%; width: auto; max-width: calc(var(--lm) * 3); object-fit: contain; }
+.logomark.has-file .markfile { display: block; }
+.logomark.has-file .logo { display: none; }
+.hud .brand .logomark { --lm: 48px; }
+
 /* Upper-right logo slot: drop a file at img/brand/logo.png */
 .hud .partner { height: 48px; width: auto; max-width: 160px; object-fit: contain; flex: none; margin-left: 6px; }
 @media (max-width: 1000px) { .hud .partner { height: 40px; max-width: 112px; } }
