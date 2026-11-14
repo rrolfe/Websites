@@ -29,12 +29,7 @@ ok(!(await page.locator('.ccard.pot .btn').count()), 'no Claim button while the 
 const title = await page.title();
 ok(/Max/.test(await page.locator('.hud .brand b').innerText()) || lang === 'es', 'the title uses the child’s name from brand.js');
 
-// 2. the logo slot
-ok((await page.locator('.hud img.partner').count()) === 1, 'the logo slot is in the top bar');
-ok(await page.evaluate(() => { const i = document.querySelector('.hud img.partner'); return i.complete && i.naturalWidth > 0; }), 'img/brand/logo.png loads');
-ok(await page.evaluate(() => { const h = document.querySelector('.hud'); const r = h.getBoundingClientRect(), i = document.querySelector('.hud img.partner').getBoundingClientRect(); return i.right <= r.right + 1 && h.scrollWidth <= h.clientWidth + 1; }), 'the top bar does not overflow with the logo');
-const lang2 = await page.evaluate(() => [...document.querySelectorAll('.hud .seg button')].every((b) => b.getBoundingClientRect().width > 40));
-ok(lang2, 'the EN / ES buttons are not squeezed');
+// 2. the upper-right logo slot is tested in section 7 (the repo ships no logo.png; the slot hides itself until a file is added)
 
 // 3. fill the pot and claim once
 await page.evaluate(async () => { const st = await import('./js/core/store.js'); st.day().pearls = 400; st.save(); });
@@ -94,13 +89,17 @@ const bank = await pearls(page);
 await playRound();
 sum = await page.locator('.summary').innerText();
 ok(!/Beat the Clock \+10|Gana al reloj \+10/.test(sum) && /again|otra vez/.test(sum), 'a second run the same day pays no second bonus');
-// 7. the upper-left mark slot: Max's drawing shows with no file; a file at img/brand/mark.png replaces it
+// 7. the logo slots. Upper right (img/brand/logo.png) hides itself with no file; upper left (img/brand/mark.png) shows Max's drawing with no file.
 await goto('#/home');
+ok(await page.evaluate(() => { const i = document.querySelector('.hud img.partner'); return !!i && getComputedStyle(i).display === 'none' && document.querySelector('.hud').scrollWidth <= document.querySelector('.hud').clientWidth + 1; }), 'with no logo.png, the upper-right slot is hidden and the bar does not overflow');
 ok(await page.evaluate(() => { const m = document.querySelector('.hud .logomark'); return !!m && !m.classList.contains('has-file') && getComputedStyle(m.querySelector('svg.logo')).display !== 'none'; }), 'with no mark.png, Max’s drawing shows in the upper left');
 await page.route('**/img/brand/mark.png', (r) => r.fulfill({ status: 200, contentType: 'image/png', body: plainPng(200, 75) }));
+await page.route('**/img/brand/logo.png', (r) => r.fulfill({ status: 200, contentType: 'image/png', body: plainPng(400, 150) }));
 await page.reload(); await page.waitForSelector('.hud .logomark.has-file', { timeout: 5000 });
+ok(await page.evaluate(() => { const i = document.querySelector('.hud img.partner'); return i.complete && i.naturalWidth > 0 && getComputedStyle(i).display !== 'none'; }), 'a logo.png file shows in the upper right');
 ok(await page.evaluate(() => { const m = document.querySelector('.hud .logomark'); const i = m.querySelector('.markfile'); const h = document.querySelector('.hud');
-  return getComputedStyle(m.querySelector('svg.logo')).display === 'none' && i.naturalWidth > 0 && i.getBoundingClientRect().height <= 49 && h.scrollWidth <= h.clientWidth + 1; }), 'a mark.png replaces the drawing, fits the bar, and the bar does not overflow');
+  return getComputedStyle(m.querySelector('svg.logo')).display === 'none' && i.naturalWidth > 0 && i.getBoundingClientRect().height <= 49 && h.scrollWidth <= h.clientWidth + 1; }), 'a mark.png replaces the drawing, fits the bar, and the bar does not overflow with both logos');
+ok(await page.evaluate(() => [...document.querySelectorAll('.hud .seg button')].every((b) => b.getBoundingClientRect().width > 40)), 'the EN / ES buttons are not squeezed with both logos');
 await shot(page, `challenge-mark-${lang}-${device}`);
 
 ok(errors.length === 0, 'no page errors' + (errors.length ? ': ' + errors.join(' | ') : ''));
